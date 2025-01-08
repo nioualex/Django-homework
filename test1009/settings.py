@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mypost',
-    
+    'mypost',  # 這是你創建的 app
 ]
 
 MIDDLEWARE = [
@@ -120,23 +119,26 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 # 指定靜態文件的目錄
 STATICFILES_DIRS = [
     BASE_DIR / "mypost" / "static",  # 假設你在 mypost 目錄下創建了 static 文件夾
 ]
 
+# 用來儲存上傳的媒體文件，如圖片
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# 登入和登出配置
 LOGIN_URL = '/login/'  # 如果用戶未登入，會跳轉到這個 URL
-
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 # 邮件配置
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -146,7 +148,3 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'your-email@gmail.com'  # 你的邮件地址
 EMAIL_HOST_PASSWORD = 'your-email-password'  # 你的邮件密码
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-
-

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h2>個人頁面</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">保存更改</button>
+</form>
+<hr>
+
+<!-- 顯示用戶的頭像 -->
+{% if user.profile.profile_picture %}
+  <img src="{{ user.profile.profile_picture.url }}" alt="大頭貼" width="150" height="150">
+{% else %}
+  <img src="{% static 'images/彩虹小馬.jpg' %}" alt="預設大頭貼" width="150" height="150">
+{% endif %}
+
+<p><strong>暱稱:</strong> {{ user.profile.name }}</p>
+<p><strong>個人簡介:</strong> {{ user.profile.bio }}</p>
+
+{% endblock %}

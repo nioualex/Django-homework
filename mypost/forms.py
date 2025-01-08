@@ -4,16 +4,19 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import BlogPost, UserProfile
 
-
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['avatar']
+        fields = ['profile_picture', 'name', 'bio']  # 修改這裡，使用 profile_picture 而非 avatar
         labels = {
-            'avatar': '用户头像',
+            'profile_picture': '用户头像',  # 修改标签名为“用户头像”
+            'name': '昵称',
+            'bio': '个人简介'
         }
         help_texts = {
-            'avatar': '请选择您的头像（可选）',
+            'profile_picture': '请选择您的头像（可选）',
+            'name': '输入您的昵称',
+            'bio': '填写个人简介'
         }
 
 class UserForm(forms.ModelForm):
@@ -37,7 +40,6 @@ class UserForm(forms.ModelForm):
         self.fields['first_name'].widget.attrs.update({'class': 'form-control', 'placeholder': '名'})
         self.fields['last_name'].widget.attrs.update({'class': 'form-control', 'placeholder': '姓'})
         self.fields['password'].widget.attrs.update({'class': 'form-control', 'placeholder': '密码'})
-
 
 class BlogPostForm(forms.ModelForm):
     class Meta:

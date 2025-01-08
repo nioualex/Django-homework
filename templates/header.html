@@ -1,3 +1,5 @@
+{% load static %}
+
 <header class="container py-4 border-bottom">
     <div class="row align-items-center">
         {% if request.path != '/login/' %}
@@ -24,7 +26,16 @@
         <div class="col-md-4 text-end">
             <div class="user-info">
                 {% if user.is_authenticated %}
-                    <p class="mb-0">歡迎, {{ user.username }} |
+                    <p class="mb-0">
+                        <!-- 用戶頭像，帶有跳轉到個人資料的鏈接 -->
+                        <a href="{% url 'user_profile' %}">
+                            {% if user.profile.profile_picture %}
+                                <img src="{{ user.profile.profile_picture.url }}" alt="頭像" width="40" height="40" class="rounded-circle me-2">
+                            {% else %}
+                                <img src="{% static 'images/彩虹小馬.jpg' %}" alt="預設頭像" width="40" height="40" class="rounded-circle">
+                            {% endif %}
+                        </a>
+                        歡迎, {{ user.username }} |
                         <form action="{% url 'logout' %}" method="post" style="display: inline;">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-link p-0">登出</button>

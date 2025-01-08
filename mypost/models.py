@@ -29,7 +29,9 @@ class BlogPost(models.Model):
 # 定义 UserProfile 模型
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)  # 默认头像
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    bio = models.TextField(blank=True, null=True, verbose_name="個人簡介")
+    name = models.CharField(max_length=100, blank=True, null=True, verbose_name="暱稱")
 
     def __str__(self):
         return self.user.username
