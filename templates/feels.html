@@ -1,0 +1,23 @@
+{% extends 'mainpage.html' %}
+
+{% block title %}心情版{% endblock %}
+
+{% block blog %}
+<div class="container py-5">
+    <h1>文章</h1>
+
+    <!-- 使用 for 循環顯示每篇文章 -->
+    <div class="article-list mt-4">
+        {% for feels_post in feels_posts %}
+        <div class="article-card mb-4 p-3 border rounded shadow-sm">
+            <h2><a href="" class="text-decoration-none text-dark">{{ feels_post.title }}</a></h2>
+            <p class="text-muted small">分類: {{ feels_post.category }} | 更新於 {{ feels_post.updated_at|date:"Y年m月d日" }}</p>
+            <p>{{ feels_post.content|truncatewords:50 }}</p>  <!-- 顯示文章內容的前 50 個字 -->
+            <a href="" class="btn btn-primary btn-sm">閱讀更多</a>
+        </div>
+        {% empty %}
+        <p>目前沒有任何文章。</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

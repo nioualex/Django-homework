@@ -1,0 +1,39 @@
+<header class="container py-4 border-bottom">
+    <div class="row align-items-center">
+        {% if request.path != '/login/' %}
+        <!-- 左側區域：網站名稱與描述 -->
+        <div class="col-md-4">
+            <h1 class="fw-bold">
+                <a href="/" class="text-decoration-none text-dark">Bcard！</a>
+            </h1>
+            <p class="text-muted mb-0">在這裡，你將找到各種有趣的文章，分享我的經歷和見解。</p>
+        </div>
+
+        <!-- 中央區域：搜索框 -->
+        <div class="col-md-4 text-center">
+            <form method="GET" action="" class="d-inline-block w-100">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="搜尋文章" aria-label="搜尋文章" aria-describedby="button-search">
+                    <button class="btn btn-secondary" type="submit" id="button-search">搜尋</button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+
+        <!-- 右側區域：登入/登出資訊 -->
+        <div class="col-md-4 text-end">
+            <div class="user-info">
+                {% if user.is_authenticated %}
+                    <p class="mb-0">歡迎, {{ user.username }} |
+                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link p-0">登出</button>
+                        </form>
+                    </p>
+                {% else %}
+                    <a href="{% url 'login' %}">登入</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>

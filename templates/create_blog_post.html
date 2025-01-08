@@ -1,0 +1,9 @@
+{% extends 'mainpage.html.' %}
+{% block content %}
+  <h2>新增部落格文章</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">發佈</button>
+  </form>
+{% endblock %}

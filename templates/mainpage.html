@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}homepage{% endblock %}
+
+{% block content %}
+<!-- 其他頁面內容 -->
+<div class="container-fluid py-5">
+    <div class="row mt-4">
+        <div class="col-sm-12 col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Categories</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="/postList" class="text-decoration-none text-dark">文章列表</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/sports" class="text-decoration-none text-dark">運動版</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/foods" class="text-decoration-none text-dark">美食版</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/feels" class="text-decoration-none text-dark">心情版</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/create_blog_post" class="text-decoration-none text-dark">新增版面</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-9">
+            <div class="content-section bg-white p-4 rounded shadow-sm">
+                <!-- 只有當這是首頁時才顯示海報區域 -->
+                {% if request.path == '/' %}
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <a href="https://news.qoo-app.com/post/386937/bang-dream-ave-mujica-teaser-pv2" target="_blank">
+                                <img src="https://i0.wp.com/news.qoo-app.com/wp-content/uploads/2024/10/1856.jpg?w=1074&ssl=1" alt="BanG Dream Ave Mujica" class="img-fluid">
+                            </a>
+                            <p>歡迎來到Ave Mujica的化妝舞會。一月新番《BanG Dream! Ave Mujica》公布第二彈前導影片與故事概要！</p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <a href="https://www.e-muse.com.tw/zh/animation/bang-dream-its-mygo/" target="_blank">
+                                <img src="https://www.e-muse.com.tw/wp-content/uploads/2023/06/BanG-Dream-Its-MyGO_%E7%B9%81%E7%9B%B4.jpg" alt="BanG Dream It's MyGO" class="img-fluid">
+                            </a>
+                            <p>BanG Dream! It’s MyGO!!!!!</p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <a href="https://www.ntub.edu.tw/p/404-1000-66808.php?Lang=zh-tw" target="_blank">
+                                <img src="https://www.ntub.edu.tw/var/file/0/1000/img/147/ntubLOGO.jpg" alt="NTUB" class="img-fluid">
+                            </a>
+                            <p>NTUB國立台北商業大學</p>
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <!-- 只有在非首頁時才顯示這些文字 -->
+                {% if request.path != '/' %}
+                    <h3>歡迎來到 Bcard！</h3>
+                    <p>這裡是文章的主要內容或其他有趣的內容顯示區。</p>
+                {% endif %}
+                
+                {% block blog %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

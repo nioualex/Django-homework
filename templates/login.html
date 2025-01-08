@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>你好！請登入</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">登入</button>
+</form>
+
+<!-- 添加注册链接 -->
+<p>還沒有帳號？ <a href="{% url 'register' %}">註冊</a></p>
+
+<!-- 添加忘记密码链接 -->
+<p><a href="{% url 'password_reset' %}">忘記密碼？</a></p>
+{% endblock %}
